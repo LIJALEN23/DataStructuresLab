@@ -159,9 +159,11 @@ namespace test_lab03
 		system.show();
 
 	}
+
 	void huffmanTreeMain()
 	{
 	}
+
 	void debugHuffmanTree()
 	{
 		i32 arr[] = { 1, 2, 3, 4 };

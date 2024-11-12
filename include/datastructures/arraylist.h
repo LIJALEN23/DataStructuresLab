@@ -1,5 +1,5 @@
 ﻿/**
-* @file arraylist.hpp
+* @file arraylist.h
 * @brief ArrayList类的头文件
 *
 * @author [lijalen](https://github.com/LIJALEN23)
@@ -22,7 +22,7 @@ namespace arraylist
 	constexpr size_t DEFAULT_CAPACIY = 10;	//默认数组大小
 
 	/**
-	* @brief ArrayList类的头文件声明
+	* @brief ArrayList类
 	*
 	* @details 一个泛型的ArrayList类，包括基本的增删查改
 	*/

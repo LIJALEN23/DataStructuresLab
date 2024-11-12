@@ -1,9 +1,26 @@
-﻿#pragma once
+﻿/**
+* @file binarytree.h 
+* @brief 二叉树相关实现的头文件
+* 
+* @author [lijalen](https://github.com/LIJALEN23)
+* @date
+* @version 1.0
+*/
+#pragma once
 #include <iostream>
 #include "./../myint.h"
 
+/**
+* @namespace binarytree
+* @brief 与二叉树相关的代码都放在该名称中间中
+*/
 namespace binarytree
 {
+	/**
+	* @brief BinaryTree类
+	* 
+	* @details 一个泛型的二叉树抽象类
+	*/
 	template<typename T>
 	class BinaryTree
 	{
@@ -26,6 +43,11 @@ namespace binarytree
 
 	};
 
+	/**
+	* @brief BinaryTreeNode类
+	* 
+	* @details 一个泛型二叉树节点的类
+	*/
 	template<typename T>
 	struct BinaryTreeNode
 	{
@@ -39,6 +61,11 @@ namespace binarytree
 
 	};
 
+	/**
+	* @brief LinkedBinaryTree类
+	* 
+	* @details 一个泛型的LinkedBinaryTree类，实现了基本的CRUD
+	*/
 	template<typename T>
 	class LinkedBinaryTree : public virtual BinaryTree<BinaryTreeNode<T>>
 	{
@@ -79,7 +106,7 @@ namespace binarytree
 
 		void insert(const T& val) { root = insert(root, val); treeSize++; }
 
-		T remove(const T& val) { return remove(root, val); treeSize--; }
+		void remove(const T& val) { root = remove(root, val); treeSize--; }
 
 		BinaryTreeNode<T>* find(const T& val) { return find(root, val); }
 
@@ -115,10 +142,7 @@ namespace binarytree
 
 		void postOrder(void (*theVisit) (BinaryTreeNode<T>*)) override { visit = theVisit; postOrder(root); }
 
-		void levelOrder(void(*)(BinaryTreeNode<T>*)) override
-		{
-
-		}
+		void levelOrder(void(*theVisit)(BinaryTreeNode<T>*)) override { visit = theVisit; levelOrder(root); }
 
 		void preOrderOutput() { preOrder(output); std::cout << std::endl; }
 
@@ -168,30 +192,88 @@ namespace binarytree
 			return node;
 		}
 
-		T remove(BinaryTreeNode<T>* node, const T& val)
+		BinaryTreeNode<T>* remove(BinaryTreeNode<T>* node, const T& val)
 		{
-			return T();
+			//删除这个外部节点，需要注意是否为root
+			if (node->elem == val && node != root)
+			{
+				delete(node);
+				return nullptr;
+			}
+			
+			if (val > node->elem)
+			{
+				node->right = remove(node->right, val);
+			}
+			else if (val < node->elem)
+			{
+				node->left = remove(node->left, val);
+			}
+			else
+			{
+				if (node->left != nullptr)
+				{
+					BinaryTreeNode<T>* precursor = findMax(node->left);
+					node->elem = precursor->elem;
+					node->left = remove(node->left, node->elem);
+				}
+				else
+				{
+					if (node->right == nullptr)
+					{
+						delete(node);
+						return nullptr;
+					}
+
+					BinaryTreeNode<T>* successor = findMin(node->right);
+					node->elem = successor->elem;
+					node->right = remove(node->right, node->elem);
+				}
+			}
+
+			return node;
 		}
 
 		BinaryTreeNode<T>* find(BinaryTreeNode<T>* node, const T& val)
 		{
-			// TODO: insert return statement here
-			return nullptr;
+			if (node == nullptr)
+			{
+				return nullptr;
+			}
+
+			if (val > node->elem)
+			{
+				return find(node->right, val);
+			}
+			else if (val < node->elem)
+			{
+				return find(node->left, val);
+			}
+
+			return node;
 		}
 
 		BinaryTreeNode<T>* findMax(BinaryTreeNode<T>* node)
 		{
-			// TODO: insert return statement here
-			return nullptr;
+			if (node->right != nullptr)
+			{
+				node = node->right;
+			}
+
+			return node;
 		}
 
 		BinaryTreeNode<T>* findMin(BinaryTreeNode<T>* node)
 		{
-			// TODO: insert return statement here
-			return nullptr;
+			if (node->left != nullptr)
+			{
+				node = node->left;
+			}
+
+			return node;
 		}
 
-		inline BinaryTreeNode<T>* copyTree(BinaryTreeNode<T>* node)
+		BinaryTreeNode<T>* copyTree(BinaryTreeNode<T>* node)
 		{
 			return nullptr;
 		}
@@ -226,11 +308,19 @@ namespace binarytree
 			}
 		}
 
+		static void levelOrder(BinaryTreeNode<T>* node)
+		{
+
+		}
+
 		static void output(BinaryTreeNode<T>* node) { std::cout << node->elem << " "; }
 
 		static void dispose(BinaryTreeNode<T>* node) { delete node; }
 	};
 
+	/**
+	* @brief 函数指针visit初始化为空
+	*/
 	template<typename T>
 	void (*LinkedBinaryTree<T>::visit)(BinaryTreeNode<T>*) = nullptr;
 }

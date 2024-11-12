@@ -16,7 +16,7 @@
 */
 namespace test_lab03
 {
-	void fileSystemMain();	//lab03操作文件系统的main函数
+	void fileSystemMain();		//lab03操作文件系统的main函数
 
 	void debugFileTree();		//用的调试FileTree类的
 
@@ -26,7 +26,7 @@ namespace test_lab03
 
 	void debugFileSystem();					//调试FileSystem类的
 
-	void huffmanTreeMain();
+	void huffmanTreeMain();		//lab03哈夫曼编码的main函数
 
-	void debugHuffmanTree();
+	void debugHuffmanTree();	//调试HuffmanTree相关函数的
 }

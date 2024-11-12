@@ -8,6 +8,7 @@ namespace test_binarytree
 
 
 	}
+
 	void testBasic()
 	{
 		auto tree1 = binarytree::LinkedBinaryTree<std::string>();
@@ -15,6 +16,9 @@ namespace test_binarytree
 		tree1.insert("lijalen");
 		tree1.insert("hello");
 		tree1.insert("hhahhaha");
+		tree1.preOrderOutput();
+
+		tree1.remove("lijalen");
 		tree1.preOrderOutput();
 	}
 }
