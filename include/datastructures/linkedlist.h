@@ -167,7 +167,7 @@ namespace linkedlist
 				throw std::runtime_error("[removeLast()] : The linkedlist is empty!");
 			}
 
-			Node* temp = tail_;
+			Node* temp = tail_;	
 			T data = temp->data_;
 
 			tail_ = tail_->pre_;

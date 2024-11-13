@@ -1,9 +1,11 @@
 ﻿#pragma once
 #include "./../datastructures/binarytree.h"
+#include "./../datastructures/linkedlist.h"
 #include "./../myint.h"
 
 namespace huffmantree
 {
+	using linkedlist::LinkedList;
 	using binarytree::BinaryTree;
 	using binarytree::BinaryTreeNode;
 	using binarytree::LinkedBinaryTree;
@@ -13,28 +15,24 @@ namespace huffmantree
 	struct HuffmanNode
 	{
 		T weight;
-		LinkedBinaryTree<i32>* tree;
+		LinkedBinaryTree<T> tree;
 
-		HuffmanNode() : weight(0), tree(nullptr) {}
+		HuffmanNode(T weight_ = T()) : weight(weight_), tree() { tree.insert(weight); }
 
-		HuffmanNode(T weight_, LinkedBinaryTree<i32>* tree_ = nullptr) : weight(weight_), tree(tree_) {}
-
-		~HuffmanNode() { delete tree; }
+		~HuffmanNode() = default;
 	};
 
 	template<typename T>
-	LinkedBinaryTree<i32>* huffmanTree(T weight[], size_t n)
+	LinkedBinaryTree<T>* huffmanTree(T weight[], size_t size)
 	{
-		//n个元素，对应初始化n个HuffmanNode
-		HuffmanNode<T>* hNode = new HuffmanNode<T>[n + 1];
-		LinkedBinaryTree<i32> emptyTree;
-
-		for (size_t i = 1; i <= n; i++)
+		HuffmanNode<T>* nodes = new HuffmanNode<T>[size + 1];
+		for (size_t i = 0; i < size; i++)
 		{
-			hNode[i].weight = weight[i];
-			hNode[i].tree = new LinkedBinaryTree<i32>;
-			hNode[i].tree->makeTree(i, emptyTree, emptyTree);
+			nodes[i].weight = weight[i];
 		}
+
+		//minHeap<HuffmanNode<T>> heap;
+
 
 		return nullptr;
 	}

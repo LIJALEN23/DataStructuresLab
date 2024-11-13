@@ -1,5 +1,5 @@
 ﻿/**
-* @file test_lab03.hpp
+* @file test_lab03.h
 * @brief 测试FileSystem类和FileTree类，和lab03操作文件系统的main函数声明
 *
 * @author [lijalen](https://github.com/LIJALEN23)

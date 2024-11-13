@@ -19,6 +19,8 @@ namespace test_binarytree
 		tree1.preOrderOutput();
 
 		tree1.remove("lijalen");
+		tree1.remove("hello");
+		tree1.remove("hhahhaha");
 		tree1.preOrderOutput();
 	}
 }

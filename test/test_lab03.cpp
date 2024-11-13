@@ -162,12 +162,13 @@ namespace test_lab03
 
 	void huffmanTreeMain()
 	{
+
 	}
 
 	void debugHuffmanTree()
 	{
 		i32 arr[] = { 1, 2, 3, 4 };
 
-		huffmantree::LinkedBinaryTree<i32>* tree = huffmantree::huffmanTree(arr, 5);
+		huffmantree::LinkedBinaryTree<i32>* tree = huffmantree::huffmanTree(arr, 4);
 	}
 }
