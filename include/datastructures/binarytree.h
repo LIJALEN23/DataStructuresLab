@@ -92,11 +92,12 @@ namespace binarytree
 		{
 			if (this != &other)
 			{
-
+				treeSize = other.treeSize;
+				root = copyTree(other.root);
 			}
 
 			return *this;
-		};
+		}
 
 		bool isEmpty() const override { return treeSize == 0; }
 
@@ -275,7 +276,16 @@ namespace binarytree
 
 		BinaryTreeNode<T>* copyTree(BinaryTreeNode<T>* node)
 		{
-			return nullptr;
+			if (node == nullptr)
+			{
+				return nullptr;
+			}
+
+			BinaryTreeNode<T>* newNode = new BinaryTreeNode<T>(node->elem);
+			newNode->left = copyTree(node->left);
+			newNode->right = copyTree(node->right);
+
+			return newNode;
 		}
 
 		static void preOrder(BinaryTreeNode<T>* node)

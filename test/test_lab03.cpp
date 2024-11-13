@@ -169,6 +169,6 @@ namespace test_lab03
 	{
 		i32 arr[] = { 1, 2, 3, 4 };
 
-		huffmantree::LinkedBinaryTree<i32>* tree = huffmantree::huffmanTree(arr, 4);
+		huffmantree::LinkedBinaryTree<i32> tree = huffmantree::huffmanTree(arr, 4);
 	}
 }

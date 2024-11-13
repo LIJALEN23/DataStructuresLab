@@ -23,4 +23,15 @@ namespace test_binarytree
 		tree1.remove("hhahhaha");
 		tree1.preOrderOutput();
 	}
+	void testCopyConstructor()
+	{
+		auto tree1 = binarytree::LinkedBinaryTree<std::string>();
+		tree1.insert("lijalen");
+		tree1.insert("hello");
+		tree1.insert("hhahhaha");
+		tree1.preOrderOutput();
+
+		auto tree2 = tree1;
+		tree2.preOrderOutput();
+	}
 }

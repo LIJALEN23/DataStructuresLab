@@ -7,4 +7,6 @@ namespace test_binarytree
 	void debugLinkedBinaryTree();
 
 	void testBasic();
+
+	void testCopyConstructor();
 }
