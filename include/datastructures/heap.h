@@ -141,6 +141,7 @@ namespace heap
 			}
 
 			heap[currentNode] = data;
+			size++;
 		}
 
 	private:

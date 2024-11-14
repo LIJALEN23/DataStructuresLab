@@ -115,26 +115,23 @@ namespace binarytree
 
 		BinaryTreeNode<T>* findMax(const T& val) { return findMax(root); }
 
-		void makeTree(T elem, LinkedBinaryTree tree1, LinkedBinaryTree tree2)
+		void merge(const LinkedBinaryTree<T>& other)
 		{
-			LinkedBinaryTree<T>* left = nullptr;
-			LinkedBinaryTree<T>* right = nullptr;
-
-			if (tree1.root->elem > tree2.root->elem)
+			LinkedBinaryTree<T>* newTree = new LinkedBinaryTree(other);
+			BinaryTreeNode<T>* newRoot = new BinaryTreeNode<T>(root->elem);
+			if (root->elem > newTree->root->elem)
 			{
-				left = new LinkedBinaryTree<T>(tree2);
-				right = new LinkedBinaryTree<T>(tree1);
+				newRoot->left = newTree->root;
+				newRoot->right = root;
 			}
 			else
 			{
-				left = new LinkedBinaryTree<T>(tree1);
-				right = new LinkedBinaryTree<T>(tree2);
+				newRoot->left = newTree->root;
+				newRoot->right = root;
 			}
 
-			BinaryTreeNode<T>* newRoot = new BinaryTreeNode<T>(elem, left->root, right->root);
-			erase();
 			root = newRoot;
-			treeSize = left->treeSize > right->treeSize ? left->treeSize : right->treeSize;
+			treeSize = other.treeSize + treeSize + 1;
 		}
 
 		void preOrder(void (*theVisit) (BinaryTreeNode<T>*)) override { visit = theVisit; preOrder(root); }
@@ -235,7 +232,7 @@ namespace binarytree
 			return node;
 		}
 
-		BinaryTreeNode<T>* find(BinaryTreeNode<T>* node, const T& val)
+		BinaryTreeNode<T>* find(BinaryTreeNode<T>* node, const T& val) const
 		{
 			if (node == nullptr)
 			{
@@ -254,7 +251,7 @@ namespace binarytree
 			return node;
 		}
 
-		BinaryTreeNode<T>* findMax(BinaryTreeNode<T>* node)
+		BinaryTreeNode<T>* findMax(BinaryTreeNode<T>* node) const
 		{
 			if (node->right != nullptr)
 			{
@@ -264,7 +261,7 @@ namespace binarytree
 			return node;
 		}
 
-		BinaryTreeNode<T>* findMin(BinaryTreeNode<T>* node)
+		BinaryTreeNode<T>* findMin(BinaryTreeNode<T>* node) const
 		{
 			if (node->left != nullptr)
 			{
@@ -274,7 +271,7 @@ namespace binarytree
 			return node;
 		}
 
-		BinaryTreeNode<T>* copyTree(BinaryTreeNode<T>* node)
+		BinaryTreeNode<T>* copyTree(BinaryTreeNode<T>* node) const
 		{
 			if (node == nullptr)
 			{

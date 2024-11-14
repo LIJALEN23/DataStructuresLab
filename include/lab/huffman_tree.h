@@ -15,9 +15,9 @@ namespace huffmantree
 	struct HuffmanNode
 	{
 		T weight;
-		LinkedBinaryTree<T> tree;
+		LinkedBinaryTree<i32> tree;
 
-		HuffmanNode(T weight_ = T()) : weight(weight_), tree() { tree.insert(weight); }
+		HuffmanNode(T weight_ = T()) : weight(weight_), tree() {}
 
 		~HuffmanNode() = default;
 
@@ -33,12 +33,13 @@ namespace huffmantree
 	};
 
 	template<typename T>
-	LinkedBinaryTree<T> huffmanTree(T weight[], size_t size)
+	LinkedBinaryTree<i32> huffmanTree(T weight[], size_t size)
 	{
 		HuffmanNode<T>* nodes = new HuffmanNode<T>[size];
 		for (size_t i = 0; i < size; i++)
 		{
 			nodes[i].weight = weight[i];
+			nodes[i].tree.insert(i);
 		}
 		Heap<HuffmanNode<T>> heap(nodes, size, heap::MIN_HEAP);
 		delete[] nodes;
@@ -51,11 +52,14 @@ namespace huffmantree
 			heap.pop();
 			
 			node1.weight = node1.weight + node2.weight;
-			/node1.tree.merge(node2.tree);
+			node1.tree.merge(node2.tree);
 
-			heap.push();
+			heap.push(node1);
 		}
-		return heap.top().tree;
+		
+		LinkedBinaryTree<i32> tree = heap.top().tree;
+		heap.pop();
+		return tree;
 	}
 
 	string decode(string text);

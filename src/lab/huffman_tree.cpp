@@ -4,6 +4,8 @@ namespace huffmantree
 {
 	string decode(string text)
 	{
+	
+
 		return string();
 	}
 

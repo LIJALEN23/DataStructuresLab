@@ -167,8 +167,13 @@ namespace test_lab03
 
 	void debugHuffmanTree()
 	{
-		i32 arr[] = { 1, 2, 3, 4 };
+		i32 weight[] = { 186, 64, 13, 22, 32, 103, 21, 15, 47, 57, 1, 5, 32, 20, 57, 63, 15, 1, 48, 51, 80, 23, 8, 18, 1, 16, 1 };
+		size_t length = sizeof(weight) / sizeof(weight[0]);
 
-		huffmantree::LinkedBinaryTree<i32> tree = huffmantree::huffmanTree(arr, 4);
+		//index mapping character
+		std::string str = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+		binarytree::LinkedBinaryTree<i32> tree = huffmantree::huffmanTree(weight, length);
+		tree.preOrderOutput();
 	}
 }
