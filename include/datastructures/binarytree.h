@@ -51,12 +51,21 @@ namespace binarytree
 	template<typename T>
 	struct BinaryTreeNode
 	{
-		T elem;
-		BinaryTreeNode<T>* left;
-		BinaryTreeNode<T>* right;
+		T elem;						//节点元素
+		BinaryTreeNode<T>* left;	//左子树
+		BinaryTreeNode<T>* right;	//右子树
 
+		/**
+		* @brief 无参构造函数
+		*/
 		BinaryTreeNode() { left = right = nullptr; }
 
+		/**
+		* @brief 有参构造函数
+		* @param theElem 节点元素
+		* @param theLeft 左子树指针
+		* @param theRight 右子树指针
+		*/
 		BinaryTreeNode(const T& theElem, BinaryTreeNode* theLeft = nullptr, BinaryTreeNode* theRight = nullptr) : elem(theElem), left(theLeft), right(theRight) {}
 
 	};
@@ -70,8 +79,14 @@ namespace binarytree
 	class LinkedBinaryTree : public virtual BinaryTree<BinaryTreeNode<T>>
 	{
 	public:
+		/**
+		* @brief 无参构造函数
+		*/
 		LinkedBinaryTree() : root(nullptr), treeSize(0) {}
 
+		/**
+		* @brief LinkedBinaryTree析构函数
+		*/
 		virtual ~LinkedBinaryTree() { erase(); }
 
 		/**
@@ -99,22 +114,64 @@ namespace binarytree
 			return *this;
 		}
 
+		/**
+		* @brief 获取根节点指针
+		*/
+		BinaryTreeNode<T>*& getRoot() { return root; }
+
+		/**
+		* @brief 判断二叉树是否为空
+		* @return true or false
+		*/
 		bool isEmpty() const override { return treeSize == 0; }
 
+		/**
+		* @brief 获取二叉树元素个数
+		* @return 元素个数
+		*/
 		size_t size() const override { return treeSize; }
 
+		/**
+		* @brief 获取二叉树的高度
+		* @return 二叉树的高度
+		*/
 		size_t height() const override { return height(root); }
 
+		/**
+		* @brief 插入元素
+		* @param val 要插入的元素
+		*/
 		void insert(const T& val) { root = insert(root, val); treeSize++; }
 
+		/**
+		* @brief 删除元素
+		* @param val 要删除的元素
+		*/
 		void remove(const T& val) { root = remove(root, val); treeSize--; }
 
+		/**
+		* @brief 查找元素
+		* @param val 要查找的元素
+		* @return 查找到的元素
+		*/
 		BinaryTreeNode<T>* find(const T& val) { return find(root, val); }
 
+		/**
+		* @brief 查找最小元素
+		* @return 最小元素
+		*/
 		BinaryTreeNode<T>* findMin(const T& val) { return findMin(root); }
 
+		/**
+		* @brief 查找最大元素
+		* @return 最大元素
+		*/
 		BinaryTreeNode<T>* findMax(const T& val) { return findMax(root); }
 
+		/**
+		* @brief 合并二叉树
+		* @param other 要合并的二叉树
+		*/
 		void merge(const LinkedBinaryTree<T>& other)
 		{
 			LinkedBinaryTree<T>* newTree = new LinkedBinaryTree(other);
@@ -134,18 +191,43 @@ namespace binarytree
 			treeSize = other.treeSize + treeSize + 1;
 		}
 
+		/**
+		* @brief 前序遍历
+		* @param theVisit 访问函数
+		*/
 		void preOrder(void (*theVisit) (BinaryTreeNode<T>*)) override { visit = theVisit; preOrder(root); }
 
+		/**
+		* @brief 中序遍历
+		* @param theVisit 访问函数
+		*/
 		void inOrder(void (*theVisit) (BinaryTreeNode<T>*)) override { visit = theVisit; inOrder(root); }
 
+		/**
+		* @brief 后序遍历
+		* @param theVisit 访问函数
+		*/
 		void postOrder(void (*theVisit) (BinaryTreeNode<T>*)) override { visit = theVisit; postOrder(root); }
 
+		/**
+		* @brief 层序遍历
+		* @param theVisit 访问函数
+		*/
 		void levelOrder(void(*theVisit)(BinaryTreeNode<T>*)) override { visit = theVisit; levelOrder(root); }
 
+		/**
+		* @brief 前序遍历输出
+		*/
 		void preOrderOutput() { preOrder(output); std::cout << std::endl; }
 
+		/**
+		* @brief 中序遍历输出
+		*/
 		void inOrderOutput() { inOrder(output); std::cout << std::endl; }
 
+		/*
+		* @brief 释放二叉树
+		*/
 		void erase()
 		{
 			postOrder(dispose);
@@ -154,10 +236,15 @@ namespace binarytree
 		}
 
 	private:
-		BinaryTreeNode<T>* root;
-		size_t treeSize;
-		static void (*visit) (BinaryTreeNode<T>*);
+		BinaryTreeNode<T>* root;						//根节点指针
+		size_t treeSize;								//二叉树元素个数
+		static void (*visit) (BinaryTreeNode<T>*);		//访问函数指针
 
+		/**
+		* @brief 拷贝二叉树
+		* @param node 二叉树节点指针
+		* @return 二叉树节点指针
+		*/
 		static size_t height(BinaryTreeNode<T>* node)
 		{
 			if (node == nullptr)

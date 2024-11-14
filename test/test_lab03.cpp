@@ -3,7 +3,7 @@
 * @brief 对应头文件test_lab03的函数实现
 *
 * @author [lijalen](https://github.com/LIJALEN23)
-* @date 2024-11-03
+* @date 2024-11-14
 * @version 1.0
 */
 #include "test_lab03.h"
@@ -23,7 +23,10 @@ namespace test_lab03
 	using std::getline;
 
 
-
+	/**
+	* @brief 文件系统Main函数
+	* @details 测试文件系统，输入指令，执行指令
+	*/
 	void fileSystemMain()
 	{
 		string input;
@@ -45,6 +48,10 @@ namespace test_lab03
 		}
 	}
 
+	/**
+	* @brief 文件树Mainhd
+	* @details 测试文件树，添加、删除、查找
+	*/
 	void debugFileTree()
 	{
 		string str1 = "/bin/python3/";
@@ -91,6 +98,9 @@ namespace test_lab03
 		tree.printFileTree();
 	}
 
+	/**
+	* @brief 测试文件树构造函数
+	*/
 	void testFileTreeConstructors()
 	{
 		FileTree tree1;
@@ -103,6 +113,9 @@ namespace test_lab03
 
 	}
 
+	/**
+	* @brief 测试文件树CRUD
+	*/
 	void testFileTreeCRUD()
 	{
 		FileTree tree1;
@@ -149,6 +162,9 @@ namespace test_lab03
 		cout << endl;
 	}
 
+	/**
+	* @brief 测试文件系统
+	*/
 	void debugFileSystem()
 	{
 		FileSystem system("/\nlib/\n\tpython3/\n\thello.txt\n\telse/\nhome/\n\tlijalen/\n\t\tCode/\n\t\t\tCpp/\n\t\t\t\thelloworld.cpp\n\t\t\tJava/\n\t\t\t\thahaha.java\n\t\t\tPython/\n\t\tDesktop/\n\t\tsundries/\nbin/\n\tapt/\n\thahaha.txt");
@@ -160,11 +176,48 @@ namespace test_lab03
 
 	}
 
+	/**
+	* @brief 哈夫曼树Main函数
+	* @details 测试哈夫曼树，编码、解码
+	*/
 	void huffmanTreeMain()
 	{
+		//编码数组的长度
+		const static size_t LENGTH = 27;
+		//码表偏移量
+		const static size_t OFFSET = 64;
+
+		//权重数组
+		i32 weight[LENGTH] = { 186, 64, 13, 22, 32, 103, 21, 15, 47, 57, 1, 5, 32, 20, 57, 63, 15, 1, 48, 51, 80, 23, 8, 18, 1, 16, 1 };
+		//生成哈夫曼树
+		binarytree::LinkedBinaryTree<i32> huffmantree = huffmantree::huffmanTree(weight, LENGTH);
+		
+		//生成编码表
+		std::string* map = new string[LENGTH];
+		std::string prefix = "";
+		huffmantree::mapArr(map, LENGTH, huffmantree.getRoot(), prefix);
+		
+		//输出编码表
+		std::cout << "空格 : " << map[0] << std::endl;
+		for (size_t i = 1; i < LENGTH; i++)
+		{
+			std::cout << (char)(i + OFFSET) << " : " << map[i] << std::endl;
+		}
+
+		//编码
+		std::string originalCode = "THIS PROGRAM IS MY FAVORITE";
+		std::string afterEncode = huffmantree::encode(map, LENGTH, originalCode);
+		std::cout << std::endl << "AfterEncode : " << afterEncode << std::endl;
+
+		//解码	
+		std::string afterDecode = huffmantree::decode(huffmantree, afterEncode);
+		std::cout << "AfterDecode : " << afterDecode << std::endl;
 
 	}
 
+	/**
+	* @brief 测试哈夫曼树
+	*/
 	void debugHuffmanTree()
 	{
 		i32 weight[] = { 186, 64, 13, 22, 32, 103, 21, 15, 47, 57, 1, 5, 32, 20, 57, 63, 15, 1, 48, 51, 80, 23, 8, 18, 1, 16, 1 };

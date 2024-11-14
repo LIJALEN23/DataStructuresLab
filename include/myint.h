@@ -1,4 +1,12 @@
-﻿#pragma once
+﻿/**
+* @file myint.h
+* @brief Custom integer type
+* 
+* @author [lijalen](https://github.com/LIJALEN23)
+* @date 2024-10-11 
+* @version 1.0	
+*/
+#pragma once
 #include <cstdint>
 
 typedef int8_t i8;		//char	
