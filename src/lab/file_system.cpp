@@ -59,11 +59,9 @@ namespace file_system
 	}
 
 	/**
-	* @brief
+	* @brief 通过绝对路径添加
 	*
-	* @details
-	*
-	* @param
+	* @param absolutePath 绝对路径
 	*/
 	void FileTree::add(const string& absolutePath)
 	{
@@ -75,11 +73,9 @@ namespace file_system
 	}
 
 	/**
-	* @brief
+	* @brief 通过绝对路径删除
 	*
-	* @details
-	*
-	* @param
+	* @param absolutePath 绝对路径
 	*/
 	void FileTree::remove(const string& absolutePath)
 	{
@@ -92,13 +88,9 @@ namespace file_system
 	}
 
 	/**
-	* @brief
+	* @brief 通过文件名或文件夹名查找
 	*
-	* @details
-	*
-	* @param
-	*
-	* @return
+	* @param fileOrFolder 文件名或文件夹名
 	*/
 	ArrayList<string> FileTree::find(const string& fileOrFolder)
 	{
@@ -111,11 +103,10 @@ namespace file_system
 	void (*FileTree::visit) (FileTreeNode*) = nullptr;
 
 	/**
-	* @brief
+	* @brief 前序遍历
+	* 
+	* @param node 节点
 	*
-	* @details
-	*
-	* @param
 	*/
 	void FileTree::preOrder(FileTreeNode* node)
 	{
@@ -295,6 +286,12 @@ namespace file_system
 		return components;
 	}
 
+	/**
+	* @brief 文本解析
+	*
+	* @param text 文本
+	* @return ArrayList<string>& 文本解析后的文件名或文件夹名
+	*/
 	ArrayList<string>& FileTree::splitText(const string& text, ArrayList<string>& filesOrFolders)
 	{
 		istringstream iss(text);

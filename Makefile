@@ -17,10 +17,10 @@ BINDIR = bin
 TARGET = myprogram
 
 # 递归查找所有源文件
-SOURCES := $(shell find $(SRCDIR) -name "*.c")
+SOURCES := $(shell find $(SRCDIR) -name "*.cpp")
 
 # 生成对象文件路径
-OBJECTS := $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES))
+OBJECTS := $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 
 # 默认目标
 all: $(BINDIR)/$(TARGET)
