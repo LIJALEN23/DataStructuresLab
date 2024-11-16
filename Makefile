@@ -2,10 +2,10 @@
 CC = g++
 
 # 编译选项
-CFLAGS = -std=c++11 -Wall -Wextra -g -O0 -Iinclude
+CFLAGS = -std=c++14 -Wall -Wextra -g -O0 -Iinclude
 
 # 源文件目录
-SRCDIR = src
+SRCDIR = src test
 
 # 对象文件目录
 OBJDIR = obj
@@ -30,8 +30,8 @@ $(BINDIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(BINDIR)
 	$(CC) $(CFLAGS) -o $@ $^
 
-# 编译 .c 为 .o文件
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
+# 编译 .cpp 为 .o文件
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 

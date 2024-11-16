@@ -1,5 +1,4 @@
-﻿#pragma once
-#include "test_arraylist.h"
+﻿#include "test_arraylist.h"
 #include "./../include/datastructures/linkedlist.h"
 
 namespace test_arraylist
