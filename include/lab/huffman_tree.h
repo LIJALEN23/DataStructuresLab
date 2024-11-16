@@ -113,7 +113,7 @@ namespace huffmantree
 	* @param prefix 前缀
 	* @return string*& 哈夫曼编码表
 	*/
-	string*& mapArr(string*& arr, size_t length, BinaryTreeNode<i32>*& node, string& prefix);
+	string*& mapArr(string*& arr, BinaryTreeNode<i32>*& node, string& prefix);
 
 	/**
 	* @brief 哈夫曼编码
@@ -122,7 +122,7 @@ namespace huffmantree
 	* @param text 待编码文本
 	* @return string 编码结果
 	*/
-	string encode(string*& map, size_t length,const string& text);
+	string encode(string*& map, const string& text);
 
 	/**
 	* @brief 哈夫曼解码

@@ -195,7 +195,7 @@ namespace test_lab03
 		//生成编码表
 		std::string* map = new string[LENGTH];
 		std::string prefix = "";
-		huffmantree::mapArr(map, LENGTH, huffmantree.getRoot(), prefix);
+		huffmantree::mapArr(map, huffmantree.getRoot(), prefix);
 		
 		//输出编码表
 		std::cout << "空格 : " << map[0] << std::endl;
@@ -206,7 +206,7 @@ namespace test_lab03
 
 		//编码
 		std::string originalCode = "THIS PROGRAM IS MY FAVORITE";
-		std::string afterEncode = huffmantree::encode(map, LENGTH, originalCode);
+		std::string afterEncode = huffmantree::encode(map, originalCode);
 		std::cout << std::endl << "AfterEncode : " << afterEncode << std::endl;
 
 		//解码	

@@ -4,8 +4,7 @@ namespace test_heap
 {
 	using heap::Heap;
 
-
-	void test_heap::testBasic()
+	void testBasic()
 	{
 		i32 arr[] = { 1, 3, 4, 534, 31, 1423, 123, 23 };
 		size_t size = sizeof(arr) / sizeof(arr[0]);

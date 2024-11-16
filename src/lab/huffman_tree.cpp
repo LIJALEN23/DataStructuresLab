@@ -15,8 +15,9 @@
 */
 namespace huffmantree
 {
-	string*& mapArr(string*& arr, size_t length, BinaryTreeNode<i32>*& node, string& prefix)
+	string*& mapArr(string*& arr, BinaryTreeNode<i32>*& node, string& prefix)
 	{
+
 		//叶节点才记录
 		if (node->left == nullptr && node->right == nullptr)
 		{
@@ -27,20 +28,21 @@ namespace huffmantree
 		else if (node->left == nullptr && node->right != nullptr)
 		{
 			string rightPrefix = prefix + '1';
-			mapArr(arr, length, node->right, rightPrefix);
+			return mapArr(arr, node->right, rightPrefix);
 		}
 		//左子树不为空，右子树为空
 		else if(node->left != nullptr && node->right == nullptr)
 		{
 			string leftPrefix = prefix + '0';
-			mapArr(arr, length, node->left, leftPrefix);
+			return mapArr(arr, node->left, leftPrefix);
 		}
 
 		string leftPrefix = prefix + '0';
 		string rightPrefix = prefix + '1';
 		//左右子树都存在
-		mapArr(arr, length, node->left, leftPrefix);
-		mapArr(arr, length, node->right, rightPrefix);
+		mapArr(arr, node->left, leftPrefix);
+		mapArr(arr, node->right, rightPrefix);
+		return arr;
 	}
 
 	string decode(LinkedBinaryTree<i32>& tree, const string& text)
@@ -84,7 +86,7 @@ namespace huffmantree
 		return result;
 	}
 
-	string encode(string*& map, size_t length,const string& text)
+	string encode(string*& map, const string& text)
 	{
 		//计算字符的偏移量
 		const static i32 OFFSET = 64;

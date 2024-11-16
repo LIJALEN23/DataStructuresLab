@@ -92,7 +92,6 @@ namespace binarytree
 		/**
 		* @brief LinedBinaryTree复制构造函数
 		*/
-
 		LinkedBinaryTree(const LinkedBinaryTree& other)
 		{
 			treeSize = other.size();
@@ -102,7 +101,6 @@ namespace binarytree
 		/**
 		* @brief LinkedBinaryTree赋值运算符
 		*/
-
 		LinkedBinaryTree<T>& operator=(const LinkedBinaryTree& other)
 		{
 			if (this != &other)
