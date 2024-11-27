@@ -10,14 +10,15 @@
 #include "./../test/test_linkedbinarytree.h"
 #include "./../test/test_lab03.h"
 #include "./../test/test_heap.h"
+#include "./../test/test_graph.h"
 
 int main() {
 
 	std::cout << "Hello, lijalen!" << std::endl;
 	std::cout << "Enjoy your time!\n\n\n\n\n";
 
-	test_lab03::fileSystemMain();
-	test_lab03::huffmanTreeMain();
+	test_graph::testBasic();
+
 
 	return 0;
 }
