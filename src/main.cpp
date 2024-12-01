@@ -11,14 +11,16 @@
 #include "./../test/test_lab03.h"
 #include "./../test/test_heap.h"
 #include "./../test/test_graph.h"
+#include "./../test/test_lab04.h"
 
-int main() {
+int main(int argc, char* argv[]) {
 
 	std::cout << "Hello, lijalen!" << std::endl;
 	std::cout << "Enjoy your time!\n\n\n\n\n";
 
-	test_graph::testBasic();
 
+	//test_lab04::debugRoutePlan();
+	test_lab04::RoutePlanMain(argc, argv);
 
 	return 0;
 }
